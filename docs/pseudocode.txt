@@ -1,0 +1,26 @@
+
+// check if git is installed
+	// warn if Git is not installed, exit
+// check if release mode is set to copy
+// check if ssh is installed
+	// warn if ssh isn't installed, exit
+// check if SSH keys exist
+	// warn if no SSH key exists
+// check if we are in a git repo
+// check if dorelease.config is present, if not, create one with defaults
+// check if dorelease.ignore is present, if not, create one with defaults
+// check if dorelease.releases is present, if not, create one
+	// Remind to perhaps version dorelease.config, dorelease.ignore
+		// dorelease.releases created. You definitely should version this file.
+		// dorelease.ignore created. It makes sense to add this to git.
+		// dorelease.config created. It *might* make sense to add this to git, but
+			// might also make sense to .gitignore it, especially if it contains sensitive data
+			// that only you should know (remote host usernames for instance).
+			// git ignore dorelease.config if you're not sure about this.
+
+//"release"
+	// check configured release branch and check current checkout
+		// warn and exit if current checkout isn't release branch
+	// check if git status is clean, except for dorelease.config and dorelease.ignore, if not, warn and exit
+	// check if origin is reachable, warn and exit if not (??)
+	// get all changes between head

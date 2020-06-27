@@ -1,0 +1,29 @@
+
+Config example:
+<code>
+{
+    "release-branch":"master",
+	"default-target":"stage",
+	"release-mode":"ssh", /** "copy" **/
+    "source-target-paths":{
+        "standard":{
+            "/somedir":"/var/www/myproject/somedir",
+            "/otherdir":"/var/www/myproject/otherdir"
+        },
+        "special":{
+            "live":{
+                "/somedir":"/0984poajisd/web/somedir",
+            }
+        }
+    },
+	"targets":{
+		"stage,staging":{
+			"user-at-host":"user@host.com"
+		},
+		"live":{
+			  "release-home-path":"/var/www/myproject"
+			  "user-at-host":"user@host.com"
+		  }
+	}
+}
+</code>
