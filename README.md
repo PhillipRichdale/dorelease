@@ -1,69 +1,58 @@
 # dorelease
-dorelease is a CLI Script that deploys a git version diff of files from current HEAD of a current
-branch in a git versioned directory. To do this it utilises php-cli, git, cp and scp. dorelease automatically memorises releases on the current branch for future reference.
+dorelease is a CLI tool that deploys a git version diff of files from current HEAD of a current branch in a git versioned directory. dorelease automatically memorises releases on the current branch for future reference. dorelease is programmed with web projects in mind, but can be used for anything with similar requirements for deployment and delivery.
 
-dorelease comes with some neat and useful features, such as revert, release-deploy and ignore and can also be used in projects where release branches aren't required. For convencience and ease of use dorelease tracks releases in its own tracking file "dorelease.releases".
-
-dorelease is written in PHP but was built for any type of web project, not just PHP projects.
-It also works great for static sites and other non-PHP projects.
+dorelease comes with some neat and useful features, such as revert, release-deploy, include and ignore and can also be used in projects where release branches aren't required. For convenience and ease of use dorelease tracks releases in its own tracking file "dorelease.releases" and not with tags or git branches.
  
-A huge advantage of dorelease is that you don't need a CI or deployment host for deployments. dorelease is ment to be used on dev-team machines directly and is CI host independant.
+A huge advantage of dorelease is that you don't need a CI or deployment host for deployments. dorelease is ment to be used on dev-team machines directly and is independant of any auxiliary CI host.
 
- ___What dorelease is not___: dorelease is a release and deployment tool, *not* a build tool. Build, compile, transpile, minify, bundle, whatever your files with a seperate tool and track these artifacts in a seperate branch, then you can use dorelease as a release and deployment tool and also use <code>dorelease revert</code> for those artifacts.
-
+ __What dorelease is not__\
+ dorelease is a release and deployment tool, not a build tool. If you build, compile, transpile, minify, bundle, etc. your files with a seperate tool and track these artifacts in a seperate git branch, then you can use dorelease as a release and deployment tool and also use <code>dorelease revert</code> for those artifacts in that branch.
 
 **Requirements**
-php-cli,
-git,
-cp,
-rm,
-scp (ssh) for remote deployments
+
+dorelease is written in the PHP programming language. It requires <code>php-cli</code>, <code>git</code>, <code>cp</code>, <code>mkdir</code>, <code>rm</code>, <code>rmdir</code> and <code>scp</code> for all its features to work. dorelease does not require a webserver to function, it's a pure cli tool.
 
 **Installation**
 
-Debian Linux Variants, including Ubuntu:
+Debian Linux Variants, including Ubuntu:\
 <code>apt install dorelease</code>
 
-With composer (any platform):
+With composer (any platform):\
 <code>composer [bladiblah]</code>
 
-For a direct global install on Linux or BSD copy and paste this command to the CLI and execute (sudo access required):
-
+For a direct global install on Linux or BSD copy and paste this command to the CLI and execute (sudo access required):\
 <code>curl https://bladiblah... && sudo mkdir /usr/share/dorelease && sudo mv dorelease /usr/share/dorelease/dorelease</code>
-**Files**
 
-dorelease.php, dorelease.ignore, dorelease.config, LICENSE, Readme.md (this file)
+**Files:**\
+<code>dorelease.php, dorelease.include, dorelease.ignore, dorelease.config, LICENSE, Readme.md (this file)</code>
 
-***Configuration & Setup***
+*****Configuration & Setup*****
 
-**dorelease.config**
+<code>**dorelease.config**</code>\
+Configuration is stored in <code>dorelease.config</code>, in the git root of your project. If there is no sensitive information in <code>dorelease.config</code> it _may_ be safe to version this file. However, this is _not_ recommended if you're unsure about this. It is best to gitignore <code>dorelease.config</code> and distribute it to your devteam using other means, especially if you're using it in public projects or your team has varying auth/auth privileges for the deploy/release targets.
 
-Configuration is stored in <code>dorelease.config</code>, in the git root of your project. If there is no sensitive information in dorelease.config it ___may___ be safe to version this file. If your unsure, gitignore dorelease.config and distribute it to your devteam using other means.
+<code>**dorelease.include**</code>\
+<code>dorelease.include</code> is a list of filepaths or globs/wildcard paths to be included in a release.
 
-**dorelease.ignore**
-<code>dorelease.ignore</code> is a list of files and their
+<code>**dorelease.ignore**</code>\
+<code>dorelease.ignore</code> is a list of filepaths or globs/wildcard paths to be ignored. <code>dorelease.ignore</code> is applied after <code>dorelease.include</code> and represents the ignore subset of <code>dorelease.include</code>. 
 
 **Commands**
 
-<code>dorelease release [target (if other than default)] ["commen"]</code>
+<code>dorelease init</code>\
+Initialises dorelease for usage in a git root of a project. Checks for presence of required tools, creates the required dorelease files and gives recommendations for the next steps.
 
-Deploys a release to the target.
+<code>dorelease deploy _[target (optional, if other than default)] ["comment"]_</code>\
+git diffs HEAD with last release and deploy to the (default) target. Requires an up-to-date working copy, with no lingering stashes or changes.
 
-
-<code>dorelease status</code>
-
+<code>dorelease status</code>\
 Gives some status information on the current state of releases and how many commits away the last release was.
 
-
-<code>dorelease revert</code>
-
+<code>dorelease revert</code>\
 Reverts the last release to the previous and removes the entry for the last release from the release file. This command will create the directory dorelease-filebuffer to check out the previous release and deploy those files. When finished it will remove the directory.
 
-
-<code>dorelease --version</code>
-
+<code>dorelease --version</code>\
 Returns the version of dorelease.
 
-
-<code>dorelease --help</code>
-Returns a help list of commands.
+<code>dorelease --help</code>\
+Returns a help list of commands and gives some basic usage hints.
