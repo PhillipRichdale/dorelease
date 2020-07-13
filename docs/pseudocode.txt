@@ -23,4 +23,4 @@
 		// warn and exit if current checkout isn't release branch
 	// check if git status is clean, except for dorelease.config and dorelease.ignore, if not, warn and exit
 	// check if origin is reachable, warn and exit if not (??)
-	// get all changes between head
+	// get all changes between HEAD and last release

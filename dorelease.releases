@@ -1,0 +1,37 @@
+{
+    "ThisIsAnExampleReleaseFileAndWillBeEmptiedOnProjectSetup":{
+	    "target":"testing",
+		"comment":"some comment",
+		"datetime":"YYYY-MM-DD HH:MM:SS"
+	},
+	"e50caccf2d3df22af73ce8a0e4efb9ee570c3e19":{
+	    "target":"live",
+		"comment":"some comment",
+		"datetime":"YYYY-MM-DD HH:MM:SS"
+	},
+	"e50caccf2d3df22af73ce8a0e4efb9ee570c3e19":{
+	    "target":"staging",
+		"comment":"some comment",
+		"datetime":"YYYY-MM-DD HH:MM:SS"
+	},
+	"7a7b62858715ac24583bb9162152f8ac68680828":{
+	    "target":"staging",
+		"comment":"some comment",
+		"datetime":"YYYY-MM-DD HH:MM:SS"
+	},
+	"7c5d340dd7d8b5a725073a53edf46451dc160ff7":{
+	    "target":"live",
+		"comment":"some comment",
+		"datetime":"YYYY-MM-DD HH:MM:SS"
+    },
+    "7c5d340dd7d8b5a725073a53edf46451dc160ff7":{
+        "target":"staging",
+        "comment":"some comment",
+        "datetime":"YYYY-MM-DD HH:MM:SS"
+    },
+	"33ae147f6418ee02a57fa5d6f0ecec8b75c0c29f":{
+	    "target":"staging",
+		"comment":"some comment",
+		"datetime":"YYYY-MM-DD HH:MM:SS"
+	}
+}
